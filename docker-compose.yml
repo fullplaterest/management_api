@@ -1,0 +1,25 @@
+version: '2'
+services:
+
+  app:
+    image: phoenix:latest
+    build: .
+    command: >
+      /bin/sh -c "mix ecto.create && mix ecto.migrate && mix deps.get && mix compile && iex -S mix phx.server "
+    volumes:
+      - .:/app
+    ports:
+      - "4001:4001"
+    environment:
+      SECRET_KEY_BASE: TtvK69c6zV0DNWeia63fpeIO7rjRrjPc7mOLLjXKPOVhqAiIby/+GKcvcaKC6g62
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: management_api_dev
+    volumes:
+      - /postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
