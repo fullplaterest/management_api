@@ -57,7 +57,14 @@ defmodule ManagementApi.MixProject do
       {:gettext, "~> 0.26"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:decimal, "~> 2.0"},
+      # Biblioteca para validação de CPF e CNPJ
+      {:brcpfcnpj, "~> 0.1.0"},
+      # Adaptador http
+      {:tesla, "~> 1.7"},
+      {:hackney, "~> 1.18"},
+      {:mox, "~> 1.0", only: :test}
     ]
   end
 

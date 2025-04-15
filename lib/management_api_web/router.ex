@@ -20,6 +20,15 @@ defmodule ManagementApiWeb.Router do
     get "/", PageController, :home
   end
 
+  scope "/api/product", ManagementApiWeb do
+    pipe_through [:api]
+
+    post "/", ProductController, :create
+    put "/:id", ProductController, :update
+    delete "/:id", ProductController, :delete
+    get "/:type", ProductController, :list
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", ManagementApiWeb do
   #   pipe_through :api

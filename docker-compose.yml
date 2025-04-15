@@ -12,6 +12,8 @@ services:
       - "4001:4001"
     environment:
       SECRET_KEY_BASE: TtvK69c6zV0DNWeia63fpeIO7rjRrjPc7mOLLjXKPOVhqAiIby/+GKcvcaKC6g62
+    networks:
+      - shared_net
 
   postgres:
     image: postgres:latest
@@ -23,3 +25,9 @@ services:
       - /postgres-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      - shared_net
+
+networks:
+  shared_net:
+    external: true
