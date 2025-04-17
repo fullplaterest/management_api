@@ -15,7 +15,7 @@ defmodule ManagementApi.Orders.Order do
         }
 
   @fields ~w(order total user_id order_status is_finished? payment_status qr_code)a
-  @required_fields ~w(order total user_id order_status is_finished? payment_status)a
+  @required_fields ~w(order total order_status is_finished? payment_status)a
   @order_status_types ~w(recebido em_preparacao pronto)a
   @primary_key {:id, :binary_id, autogenerate: true}
   schema "orders" do

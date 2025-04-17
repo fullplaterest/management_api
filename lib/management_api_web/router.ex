@@ -29,6 +29,15 @@ defmodule ManagementApiWeb.Router do
     get "/:type", ProductController, :list
   end
 
+  scope "/api/order", ManagementApiWeb do
+    pipe_through [:api]
+
+    post "/", OrderController, :create
+    get "/orders", OrderController, :list
+    get "/:id", OrderController, :get
+    put "/:id", OrderController, :update
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", ManagementApiWeb do
   #   pipe_through :api
