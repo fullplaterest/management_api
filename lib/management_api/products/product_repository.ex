@@ -16,7 +16,7 @@ defmodule ManagementApi.Products.ProductRepository do
     Product
     |> from()
     |> where([p], p.id in ^ids)
-    |> select([p], %{producMt_name: p.product_name})
+    |> select([p], %{product_name: p.product_name})
     |> Repo.all()
   end
 
