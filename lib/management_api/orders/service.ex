@@ -5,6 +5,7 @@ defmodule ManagementApi.Orders.Service do
   alias ManagementApi.Orders.OrderRepository, as: Orders
   alias ManagementApi.Users.UserRepository, as: Users
   alias ManagementApi.Users.User
+  alias ManagementApi.Integrations.MercadoPagoQrCode
 
   def create_order(%{"user_info" => user_info} = order) do
     {:ok, user} = validate_if_user_created(user_info)
@@ -19,7 +20,7 @@ defmodule ManagementApi.Orders.Service do
       {:ok, order} ->
         order
         |> create_body_qr_code(items)
-        |> create_qr(:qr)
+        |> MercadoPagoQrCode.create()
         |> case do
           {:ok, response} ->
             Orders.update_order(order.id, %{qr_code: response["qr_data"]})
@@ -48,7 +49,7 @@ defmodule ManagementApi.Orders.Service do
       {:ok, order} ->
         order
         |> create_body_qr_code(items)
-        |> create_qr(:qr)
+        |> MercadoPagoQrCode.create()
         |> case do
           {:ok, response} ->
             Orders.update_order(order.id, %{qr_code: response["qr_data"]})
@@ -76,10 +77,6 @@ defmodule ManagementApi.Orders.Service do
       %User{} = user ->
         {:ok, user}
     end
-  end
-
-  defp create_qr(_params, :qr) do
-    {:ok, %{"qr_data" => "temporario"}}
   end
 
   def get_order(order_id) do
