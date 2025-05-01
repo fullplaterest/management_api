@@ -8,7 +8,7 @@ defmodule ManagementApi.Integrations.MercadoPagoQrCode do
   def create(params) do
     case post("/", params) do
       {:ok, %Tesla.Env{status: 201, body: body}} ->
-        {:ok, body} |> IO.inspect()
+        {:ok, body}
 
       {:ok, %Tesla.Env{status: status, body: body}} ->
         {:error, %{status: status, response: body}}

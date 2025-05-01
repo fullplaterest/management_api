@@ -18,4 +18,4 @@
                         'Elixir.ThousandIsland.Transports.SSL',
                         'Elixir.ThousandIsland.Transports.TCP']},
               {registered,[]},
-              {vsn,"1.3.12"}]}.
+              {vsn,"1.3.13"}]}.

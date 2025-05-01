@@ -21,6 +21,7 @@ defmodule ManagementApi.Orders.Service do
         order
         |> create_body_qr_code(items)
         |> MercadoPagoQrCode.create()
+        |> IO.inspect()
         |> case do
           {:ok, response} ->
             Orders.update_order(order.id, %{qr_code: response["qr_data"]})

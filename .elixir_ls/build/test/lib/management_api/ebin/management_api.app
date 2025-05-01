@@ -7,7 +7,7 @@
           ecto_sql,postgrex,phoenix_html,phoenix_live_view,floki,
           phoenix_live_dashboard,swoosh,finch,telemetry_metrics,
           telemetry_poller,gettext,jason,dns_cluster,bandit,decimal,brcpfcnpj,
-          tesla,hackney,mox]},
+          tesla,hackney,mox,excoveralls]},
      {description,"management_api"},
      {modules,
          ['Elixir.ManagementApi','Elixir.ManagementApi.Application',
