@@ -14,7 +14,8 @@ defmodule ManagementApi.Users.UserRepositoryTest do
       assert {:ok, %User{} = user} = UserRepository.register_user(@valid_attrs)
 
       assert user.email == "test@example.com"
-      assert user.cpf == "12345678900"  # normalizado
+      # normalizado
+      assert user.cpf == "12345678900"
       assert user.id_mongo == "abc123"
     end
 

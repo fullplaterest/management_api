@@ -101,7 +101,8 @@ defmodule ManagementApi.Products.ProductRepositoryTest do
     end
 
     test "retorna nil se id não existir" do
-      assert ProductRepository.update_product(Ecto.UUID.generate(), %{"product_name" => "X"}) == nil
+      assert ProductRepository.update_product(Ecto.UUID.generate(), %{"product_name" => "X"}) ==
+               nil
     end
 
     test "retorna erro se update for inválido", %{product_attrs: attrs} do

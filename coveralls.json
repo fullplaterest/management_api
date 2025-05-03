@@ -26,6 +26,7 @@
       "lib/management_api/mercado_pago/behaviors/mock.ex",
       "deps/mox/lib/mox.ex",
       "lib/management_api/repo.ex",
-      "test/support/data_case.ex"
+      "test/support/data_case.ex",
+      "lib/management_api/integrations/behavior"
     ]
 }

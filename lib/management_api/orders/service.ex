@@ -21,7 +21,6 @@ defmodule ManagementApi.Orders.Service do
         order
         |> create_body_qr_code(items)
         |> MercadoPagoQrCode.create()
-        |> IO.inspect()
         |> case do
           {:ok, response} ->
             Orders.update_order(order.id, %{qr_code: response["qr_data"]})
@@ -121,7 +120,7 @@ defmodule ManagementApi.Orders.Service do
     end
   end
 
-  def calculate_total_price(order) do
+  defp calculate_total_price(order) do
     items =
       Enum.reduce(order, %{}, fn id, acc ->
         product = Products.get_by_id(id)
@@ -133,7 +132,7 @@ defmodule ManagementApi.Orders.Service do
             title: product.product_name,
             description: product.description || "",
             quantity: 1,
-            unit_price: ensure_float(product.price),
+            unit_price: Decimal.to_float(product.price),
             unit_measure: "Unit"
           },
           fn existing_item ->
@@ -162,12 +161,6 @@ defmodule ManagementApi.Orders.Service do
       items: updated_items
     }
   end
-
-  defp ensure_float(value) when is_float(value), do: value
-  defp ensure_float(value) when is_integer(value), do: value * 1.0
-  defp ensure_float(value) when is_binary(value), do: String.to_float(value)
-  defp ensure_float(%Decimal{} = value), do: Decimal.to_float(value)
-  defp ensure_float(_), do: 0.0
 
   defp create_body_qr_code(order, items) do
     total =

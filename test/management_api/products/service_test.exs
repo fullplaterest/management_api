@@ -43,11 +43,13 @@ defmodule ManagementApi.Products.ServiceTest do
 
   describe "get_product_by_type/1" do
     setup do
-      user = UserRepository.register_user(%{
-        "email" => "user@example.com",
-        "cpf" => "12345678900",
-        "id_mongo" => "mongo_id_123"
-      }) |> elem(1)
+      user =
+        UserRepository.register_user(%{
+          "email" => "user@example.com",
+          "cpf" => "12345678900",
+          "id_mongo" => "mongo_id_123"
+        })
+        |> elem(1)
 
       product_attrs = %{
         "product_name" => "Suco",
@@ -79,20 +81,22 @@ defmodule ManagementApi.Products.ServiceTest do
 
   describe "update_product/2" do
     setup do
-      {:ok, user} = UserRepository.register_user(%{
-        "email" => "update@example.com",
-        "cpf" => "11122233344",
-        "id_mongo" => "mongo_456"
-      })
+      {:ok, user} =
+        UserRepository.register_user(%{
+          "email" => "update@example.com",
+          "cpf" => "11122233344",
+          "id_mongo" => "mongo_456"
+        })
 
-      {:ok, product} = ManagementApi.Products.ProductRepository.register_product(%{
-        "product_name" => "Coca-Cola",
-        "description" => "Refrigerante",
-        "type" => "bebida",
-        "price" => Decimal.new("7.00"),
-        "picture" => "https://example.com/coca.jpg",
-        "user_id" => user.id
-      })
+      {:ok, product} =
+        ManagementApi.Products.ProductRepository.register_product(%{
+          "product_name" => "Coca-Cola",
+          "description" => "Refrigerante",
+          "type" => "bebida",
+          "price" => Decimal.new("7.00"),
+          "picture" => "https://example.com/coca.jpg",
+          "user_id" => user.id
+        })
 
       {:ok, product: product}
     end
