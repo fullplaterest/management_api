@@ -19,6 +19,7 @@ permissions:
 
 jobs:
   test:
+    name: Elixir CI
     # Set up a Postgres DB service. By default, Phoenix applications
     # use Postgres. This creates a database for running tests.
     # Additional services can be defined here if required.
