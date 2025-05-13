@@ -36,7 +36,7 @@ jobs:
           --health-retries 5
 
     runs-on: ubuntu-latest
-    name: Elixir
+    name: Elixir Tests
     strategy:
       # Specify the OTP and Elixir versions to use when building
       # and running the workflow steps.
