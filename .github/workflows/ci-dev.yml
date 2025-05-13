@@ -19,7 +19,6 @@ permissions:
 
 jobs:
   test:
-    name: Elixir CI
     # Set up a Postgres DB service. By default, Phoenix applications
     # use Postgres. This creates a database for running tests.
     # Additional services can be defined here if required.
@@ -37,7 +36,7 @@ jobs:
           --health-retries 5
 
     runs-on: ubuntu-latest
-    name: Test on OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
+    name: Elixir CI
     strategy:
       # Specify the OTP and Elixir versions to use when building
       # and running the workflow steps.
