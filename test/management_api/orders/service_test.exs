@@ -60,7 +60,7 @@ defmodule ManagementApi.Orders.ServiceTest do
     products: [p1, p2]
   } do
     Tesla.Mock.mock(fn
-      %{method: :post, url: "http://app:4003/api/qr_code_mercado_pago/"} ->
+      %{method: :post, url: "http://18.234.227.23:4003/api/qr_code_mercado_pago/"} ->
         %Tesla.Env{
           status: 201,
           body: %{
@@ -99,7 +99,7 @@ defmodule ManagementApi.Orders.ServiceTest do
     attrs_updated = Map.delete(attrs, "user_info")
 
     Tesla.Mock.mock(fn
-      %{method: :post, url: "http://app:4003/api/qr_code_mercado_pago/"} ->
+      %{method: :post, url: "http://18.234.227.23:4003/api/qr_code_mercado_pago/"} ->
         %Tesla.Env{
           status: 201,
           body: %{
@@ -133,7 +133,7 @@ defmodule ManagementApi.Orders.ServiceTest do
     order_attrs: attrs
   } do
     Tesla.Mock.mock(fn
-      %{method: :post, url: "http://app:4003/api/qr_code_mercado_pago/"} ->
+      %{method: :post, url: "http://18.234.227.23:4003/api/qr_code_mercado_pago/"} ->
         %Tesla.Env{
           status: 404,
           body: %{
@@ -151,7 +151,7 @@ defmodule ManagementApi.Orders.ServiceTest do
     order_attrs: attrs
   } do
     Tesla.Mock.mock(fn
-      %{method: :post, url: "http://app:4003/api/qr_code_mercado_pago/"} ->
+      %{method: :post, url: "http://18.234.227.23:4003/api/qr_code_mercado_pago/"} ->
         %Tesla.Env{
           status: 201,
           body: %{
@@ -182,7 +182,7 @@ defmodule ManagementApi.Orders.ServiceTest do
   } do
     Enum.map(1..2, fn _x ->
       Tesla.Mock.mock(fn
-        %{method: :post, url: "http://app:4003/api/qr_code_mercado_pago/"} ->
+        %{method: :post, url: "http://18.234.227.23:4003/api/qr_code_mercado_pago/"} ->
           %Tesla.Env{
             status: 201,
             body: %{
@@ -209,7 +209,7 @@ defmodule ManagementApi.Orders.ServiceTest do
     order_attrs: attrs
   } do
     Tesla.Mock.mock(fn
-      %{method: :post, url: "http://app:4003/api/qr_code_mercado_pago/"} ->
+      %{method: :post, url: "http://18.234.227.23:4003/api/qr_code_mercado_pago/"} ->
         %Tesla.Env{
           status: 201,
           body: %{
