@@ -57,7 +57,7 @@
                         'Elixir.Swoosh.TestAssertions',
                         'Elixir.Swoosh.X.TestAssertions']},
               {registered,[]},
-              {vsn,"1.18.4"},
+              {vsn,"1.19.0"},
               {mod,{'Elixir.Swoosh.Application',[]}},
               {env,[{json_library,'Elixir.Jason'},
                     {api_client,'Elixir.Swoosh.ApiClient.Hackney'}]}]}.

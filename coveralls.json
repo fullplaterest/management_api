@@ -1,0 +1,32 @@
+{
+    "skip_files": [
+      "lib/management_api.ex",
+      "lib/management_api/mailer.ex",
+      "lib/management_api_web.ex",
+      "lib/management_api_web/endpoint.ex",
+      "lib/management_api_web/gettext.ex",
+      "lib/management_api_web/router.ex",
+      "lib/management_api_web/telemetry.ex",
+      "lib/management_api_web/components/core_components.ex",
+      "lib/management_api_web/components/layouts.ex",
+      "lib/management_api_web/controllers/error_helpers.ex",
+      "lib/management_api_web/controllers/error_json.ex",
+      "lib/management_api_web/controllers/page_controller.ex",
+      "lib/management_api_web/controllers/page_html.ex",
+      "lib/management_api/application.ex",
+      "lib/management_api_web/jsons/error_helpers.ex",
+      "lib/management_api_web/jsons/changeset_json.ex",
+      "lib/management_api_web/jsons/order_json.ex",
+      "lib/management_api_web/jsons/product_json.ex",
+      "lib/management_api_web/jsons/error_json.ex",
+      "lib/management_api_web/controllers/fallback_controller.ex",
+      "lib/management_api_web/controllers/error_json.ex",
+      "lib/management_api_web/controllers/jsons/error_helpers.ex",
+      "lib/management_api_web/controllers/jsons/error_json.ex",
+      "lib/management_api/mercado_pago/behaviors/mock.ex",
+      "deps/mox/lib/mox.ex",
+      "lib/management_api/repo.ex",
+      "test/support/data_case.ex",
+      "lib/management_api/integrations/behavior"
+    ]
+}

@@ -53,7 +53,7 @@ defmodule ManagementApi.Products.Service do
       end
     else
       _ ->
-        Logger.warn("invalid product type: #{inspect(params["type"])}")
+        Logger.error("invalid product type: #{inspect(params["type"])}")
         {:error, :invalid_type}
     end
   end
@@ -69,11 +69,11 @@ defmodule ManagementApi.Products.Service do
 
           product ->
             Logger.info("product with id #{valid_uuid} was updated")
-            {:ok, product}
+            product
         end
 
       :error ->
-        Logger.warn("invalid UUID provided: #{inspect(product_id)}")
+        Logger.error("invalid UUID provided: #{inspect(product_id)}")
         {:error, :not_found}
     end
   end
