@@ -140,23 +140,9 @@ jobs:
 
       - name: Compile project
         run: mix compile
-        
-      - name: Create release with env
-        run: |
-          export MIX_ENV=prod
-          export SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
-          export PHX_HOST=${{ secrets.PHX_HOST }}
-          export PHX_SERVER=true
-          export PORT=4001
-          export DATABASE_URL=${{ secrets.DATABASE_URL }}
-          export DB_USERNAME=${{ secrets.DB_USERNAME }}
-          export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-          export DB_HOST=${{ secrets.DB_HOST }}
-          export DB_NAME=${{ secrets.DB_NAME }}
-          export DB_PORT=${{ secrets.DB_PORT }}
-          export POOL_SIZE=${{ secrets.POOL_SIZE }}
 
-          mix release
+      - name: Create release
+        run: mix release
 
       - name: Archive release
         run: tar -czf payment_api.tar.gz -C _build/prod/rel/payment_api .
@@ -192,6 +178,8 @@ jobs:
             export DB_NAME=${{ secrets.DB_NAME }}
             export DB_PORT=${{ secrets.DB_PORT }}
             export POOL_SIZE=${{ secrets.POOL_SIZE }}
+
+            export DATABASE_URL=${{ secrets.DATABASE_URL }}
 
             # Parar release anterior
             ./bin/payment_api stop || true
