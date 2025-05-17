@@ -10,14 +10,11 @@ defmodule ManagementApi.Orders.OrderRepository do
     |> Repo.insert()
   end
 
-  def get_order(page, page_size, user_id) do
+  def get_order(order_id) do
     Order
     |> from()
-    |> where([o], o.user_id == ^user_id)
-    |> order_by([o], desc: o.inserted_at)
-    |> limit(^page_size)
-    |> offset((^page - 1) * ^page_size)
-    |> Repo.all()
+    |> where([o], o.id == ^order_id)
+    |> Repo.one()
   end
 
   def list_orders(page, page_size) do

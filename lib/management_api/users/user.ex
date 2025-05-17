@@ -35,15 +35,12 @@ defmodule ManagementApi.Users.User do
   end
 
   defp normalize_cpf(changeset) do
-    case get_change(changeset, :cpf) || get_field(changeset, :cpf) do
-      cpf when is_binary(cpf) ->
-        # Remove caracteres não numéricos
-        cleaned_cpf = String.replace(cpf, ~r/\D/, "")
-        put_change(changeset, :cpf, cleaned_cpf)
+    cpf =
+      get_change(changeset, :cpf) || get_field(changeset, :cpf)
 
-      _ ->
-        changeset
-    end
+    # Remove caracteres não numéricos
+    cleaned_cpf = String.replace(cpf, ~r/\D/, "")
+    put_change(changeset, :cpf, cleaned_cpf)
   end
 
   defp maybe_validate_unique_email(changeset, opts) do

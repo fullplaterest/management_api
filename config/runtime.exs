@@ -31,10 +31,14 @@ if config_env() == :prod do
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
 
   config :management_api, ManagementApi.Repo,
-    # ssl: true,
+    username: System.fetch_env!("DB_USERNAME"),
+    password: System.fetch_env!("DB_PASSWORD"),
+    hostname: System.fetch_env!("DB_HOST"),
+    port: String.to_integer(System.get_env("DB_PORT") || "5432"),
+    database: System.fetch_env!("DB_NAME"),
     url: database_url,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-    socket_options: maybe_ipv6
+    ssl: true
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
@@ -43,10 +47,7 @@ if config_env() == :prod do
   # variable instead.
   secret_key_base =
     System.get_env("SECRET_KEY_BASE") ||
-      raise """
-      environment variable SECRET_KEY_BASE is missing.
-      You can generate one by calling: mix phx.gen.secret
-      """
+      "tCeX+XEQyREfFZgEod3OnW2kSaX98XXb8lYChFIF0tpgZkghjjErQk1xLgKyW3uJ"
 
   host = System.get_env("PHX_HOST") || "example.com"
   port = String.to_integer(System.get_env("PORT") || "4001")

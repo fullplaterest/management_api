@@ -9,7 +9,17 @@ defmodule ManagementApi.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [
+        tool: ExCoveralls,
+        minimum_coverage: 80
+      ],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.html": :test,
+        "coveralls.github": :test
+      ]
     ]
   end
 
@@ -64,7 +74,10 @@ defmodule ManagementApi.MixProject do
       # Adaptador http
       {:tesla, "~> 1.7"},
       {:hackney, "~> 1.18"},
-      {:mox, "~> 1.0", only: :test}
+      {:mox, "~> 1.0", only: :test},
+      {:excoveralls, "~> 0.18", only: [:test]},
+      {:mimic, "~> 1.7", only: :test},
+      {:meck, "~> 0.9.2", only: :test}
     ]
   end
 
