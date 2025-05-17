@@ -141,25 +141,11 @@ jobs:
       - name: Compile project
         run: mix compile
 
-      - name: Create release with env
-        run: |
-          export MIX_ENV=prod
-          export SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
-          export PHX_HOST=${{ secrets.PHX_HOST }}
-          export PHX_SERVER=true
-          export PORT=4001
-          export DATABASE_URL=${{ secrets.DATABASE_URL }}
-          export DB_USERNAME=${{ secrets.DB_USERNAME }}
-          export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-          export DB_HOST=${{ secrets.DB_HOST }}
-          export DB_NAME=${{ secrets.DB_NAME }}
-          export DB_PORT=${{ secrets.DB_PORT }}
-          export POOL_SIZE=${{ secrets.POOL_SIZE }}
-
-          mix release
+      - name: Create release
+        run: mix release
 
       - name: Archive release
-        run: tar -czf payment_api.tar.gz -C _build/prod/rel/payment_api .
+        run: tar -czf management_api.tar.gz -C _build/prod/rel/management_api .
 
       - name: Upload release to EC2
         uses: appleboy/scp-action@v0.1.4
@@ -167,7 +153,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "payment_api.tar.gz"
+          source: "management_api.tar.gz"
           target: "~/app"
 
       - name: Run deploy commands on EC2
@@ -178,7 +164,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/app
-            tar -xzf payment_api.tar.gz
+            tar -xzf management_api.tar.gz
             export SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
             export PHX_HOST=${{ secrets.PHX_HOST }}
             export PORT=4001
@@ -196,7 +182,7 @@ jobs:
             export DATABASE_URL=${{ secrets.DATABASE_URL }}
 
             # Parar release anterior
-            ./bin/payment_api stop || true
+            ./bin/management_api stop || true
 
             # Rodar nova release
-            ./bin/payment_api daemon
+            ./bin/management_api daemon
