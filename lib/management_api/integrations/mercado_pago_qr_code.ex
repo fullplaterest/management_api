@@ -2,7 +2,7 @@ defmodule ManagementApi.Integrations.MercadoPagoQrCode do
   @behaviour ManagementApi.Integrations.Behaviors
   use Tesla
 
-  @base_url "http://app:4003/api/qr_code_mercado_pago"
+  @base_url "http://18.234.227.23:4003/api/qr_code_mercado_pago"
   plug Tesla.Middleware.BaseUrl, @base_url
   plug Tesla.Middleware.JSON
 
