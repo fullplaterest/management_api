@@ -141,8 +141,11 @@ jobs:
       - name: Compile project
         run: mix compile
 
-      - name: Create release
-        run: mix release
+      - name: Create release with env
+        run: |
+          export DATABASE_URL=${{ secrets.DATABASE_URL }}
+          mix release
+
 
       - name: Archive release
         run: tar -czf payment_api.tar.gz -C _build/prod/rel/payment_api .
@@ -178,8 +181,6 @@ jobs:
             export DB_NAME=${{ secrets.DB_NAME }}
             export DB_PORT=${{ secrets.DB_PORT }}
             export POOL_SIZE=${{ secrets.POOL_SIZE }}
-
-            export DATABASE_URL=${{ secrets.DATABASE_URL }}
 
             # Parar release anterior
             ./bin/payment_api stop || true
