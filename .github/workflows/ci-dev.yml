@@ -181,3 +181,4 @@ jobs:
 
             ./bin/management_api stop || true
             ./bin/management_api daemon
+            ./bin/management_api eval "ReleaseTasks.migrate"
