@@ -141,9 +141,6 @@ jobs:
           mix deps.get
           mix deps.compile
 
-      - name: Confirm MongoDB driver version
-        run: mix deps | grep mongodb
-
       - name: Build release
         run: MIX_ENV=prod mix release
 
@@ -184,4 +181,3 @@ jobs:
 
             ./bin/management_api stop || true
             ./bin/management_api daemon
-            ./bin/management_api eval "ReleaseTasks.migrate"
