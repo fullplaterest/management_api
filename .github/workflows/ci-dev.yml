@@ -120,6 +120,7 @@ jobs:
         run: mix coveralls
 
   deploy_to_ec2:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: test
     runs-on: ubuntu-latest
     env:
