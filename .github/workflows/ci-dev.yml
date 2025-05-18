@@ -135,14 +135,14 @@ jobs:
           otp-version: 25.0.4
           elixir-version: 1.14.1
 
-      - name: Clean and force install of updated dependencies
-        run: |
-          rm -rf deps _build
-          mix deps.get
-          mix deps.compile
+      - name: Install dependencies
+        run: mix deps.get
 
-      - name: Build release
-        run: MIX_ENV=prod mix release
+      - name: Compile project
+        run: mix compile
+
+      - name: Create release
+        run: mix release
 
       - name: Archive release
         run: tar -czf management_api.tar.gz -C _build/prod/rel/management_api .
@@ -171,14 +171,19 @@ jobs:
             export MIX_ENV=prod
             export PHX_SERVER=true
 
+            # Variáveis do banco de dados
             export DB_USERNAME=${{ secrets.DB_USERNAME }}
             export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
             export DB_HOST=${{ secrets.DB_HOST }}
             export DB_NAME=${{ secrets.DB_NAME }}
             export DB_PORT=${{ secrets.DB_PORT }}
             export POOL_SIZE=${{ secrets.POOL_SIZE }}
+
             export DATABASE_URL=${{ secrets.DATABASE_URL }}
 
+            # Parar release anterior
             ./bin/management_api stop || true
+
+            # Rodar nova release
             ./bin/management_api daemon
-            ./bin/management_api eval "ReleaseTasks.migrate"
+            ./bin/management_api eval "ManagementApi.Release.migrate"

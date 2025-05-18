@@ -20,7 +20,8 @@
           'Elixir.ManagementApi.Orders.Service',
           'Elixir.ManagementApi.Products.Product',
           'Elixir.ManagementApi.Products.ProductRepository',
-          'Elixir.ManagementApi.Products.Service','Elixir.ManagementApi.Repo',
+          'Elixir.ManagementApi.Products.Service',
+          'Elixir.ManagementApi.Release','Elixir.ManagementApi.Repo',
           'Elixir.ManagementApi.Users.User',
           'Elixir.ManagementApi.Users.UserRepository',
           'Elixir.ManagementApiWeb','Elixir.ManagementApiWeb.ConnCase',
@@ -41,7 +42,7 @@
           'Elixir.ManagementApiWeb.PageHTML',
           'Elixir.ManagementApiWeb.ProductController',
           'Elixir.ManagementApiWeb.Router',
-          'Elixir.ManagementApiWeb.Telemetry','Elixir.ReleaseTasks']},
+          'Elixir.ManagementApiWeb.Telemetry']},
      {registered,[]},
      {vsn,"0.1.0"},
      {mod,{'Elixir.ManagementApi.Application',[]}}]}.
