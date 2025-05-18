@@ -41,7 +41,7 @@
           'Elixir.ManagementApiWeb.PageHTML',
           'Elixir.ManagementApiWeb.ProductController',
           'Elixir.ManagementApiWeb.Router',
-          'Elixir.ManagementApiWeb.Telemetry']},
+          'Elixir.ManagementApiWeb.Telemetry','Elixir.ReleaseTasks']},
      {registered,[]},
      {vsn,"0.1.0"},
      {mod,{'Elixir.ManagementApi.Application',[]}}]}.
